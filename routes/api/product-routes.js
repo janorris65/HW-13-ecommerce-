@@ -20,9 +20,6 @@ router.get('/', (req, res) => {
 // get one product
 router.get('/:id', async (req, res) => {
   // find a single product by its `id`
-  // const proData = await Product.findByPk(req.params.id);
-
-  // return res.json(proData);
   const productData = await Product.findOne({where:{ id:req.params.id},
     include:[Category, Tag]});
 
@@ -40,6 +37,7 @@ router.post('/', (req, res) => {
       tagIds: [1, 2, 3, 4]
     }
   */
+
   Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
@@ -104,8 +102,15 @@ router.put('/:id', (req, res) => {
     });
 });
 
-router.delete('/:id', (req, res) => {
+router.delete('/:id', async (req, res) => {
   // delete one product by its `id` value
+  const proDataDes = await Product.destroy({
+    where: {
+      id: req.params.id,
+    },
+  });
+
+  return res.json(proDataDes);
 });
 
 module.exports = router;
