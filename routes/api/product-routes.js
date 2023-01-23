@@ -9,7 +9,7 @@ router.get('/', (req, res) => {
   // find all products
   Product.findAll(
     {
-    include: [Tag , Category]
+    include: [Category , Tag]
   }
   ).then((productData) => {
     res.json(productData);
@@ -18,8 +18,15 @@ router.get('/', (req, res) => {
 });
 
 // get one product
-router.get('/:id', (req, res) => {
+router.get('/:id', async (req, res) => {
   // find a single product by its `id`
+  // const proData = await Product.findByPk(req.params.id);
+
+  // return res.json(proData);
+  const productData = await Product.findOne({where:{ id:req.params.id},
+    include:[Category, Tag]});
+
+  return res.json(productData);
   // be sure to include its associated Category and Tag data
 });
 

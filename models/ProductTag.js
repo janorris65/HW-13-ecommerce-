@@ -16,17 +16,19 @@ ProductTag.init(
     },
     product_id:{
       type:DataTypes.INTEGER,
-      references:{
-        model:'product',
-        key:'id'
-      }
+      references:Product.id
+      // {
+      //   model:'product',
+      //   key:'id'
+      // }
     },
     tag_id:{
       type:DataTypes.INTEGER,
-      references:{
-        model:'tag',
-        key:'id'
-      }
+      references:Tag.id
+      // {
+      //   model:'tag',
+      //   key:'id'
+      // }
     }
     // define columns
   },
