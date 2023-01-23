@@ -6,12 +6,9 @@ const { Category, Product } = require('../../models');
 router.get('/', (req, res) => {
   // find all categories
   Category.findAll(
-  //   {
-  //   where: {
-  //     // Only get books that have this boolean set to TRUE
-  //     is_paperback: true
-  //   }
-  // }
+    {
+    include: Product
+  }
   ).then((productData) => {
     res.json(productData);
   });
