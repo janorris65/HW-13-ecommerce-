@@ -7,6 +7,7 @@ router.get('/', (req, res) => {
   // find all categories
   Category.findAll(
     {
+     // attributes: ["id", "category_name"],
     include: Product
   }
   ).then((productData) => {

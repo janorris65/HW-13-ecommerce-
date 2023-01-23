@@ -8,9 +8,9 @@ router.get('/', (req, res) => {
   
   // find all products
   Product.findAll(
-  //   {
-  //   include: Product
-  // }
+    {
+    include: Tag
+  }
   ).then((productData) => {
     res.json(productData);
   });
